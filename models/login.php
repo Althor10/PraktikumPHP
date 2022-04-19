@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
     } else {
 
-            require_once "connection.php";
+            require_once "../config/connection.php";
             $md5Password = md5($password);
 
             $query = "SELECT u.id as uid, email,passwd,role_id,role_name,usernm FROM pp_users u INNER JOIN pp_role r ON u.role_id=r.id WHERE u.usernm = :username AND u.passwd = :password;";
