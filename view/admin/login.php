@@ -7,16 +7,15 @@
                 <h2 class="tm-block-title mb-4">Welcome to Dashboard, Login</h2>
               </div>
             </div>
-            <div class = "errorMsg" id="hidden"> 
-              <div id="errorMsg">
-                <p class ="errors"></p>
             <?php if(isset($_SESSION["error"])): ?>
-                <?php foreach($_SESSION["error"] as $err):?>
-                  <p class="errors"><?= $err ?></p>
-                  <?php endforeach; ?>
-            <?php endif; ?>
+              <div class = "errorMsg"> 
+                <div id="errorMsg">
+                  <?php foreach($_SESSION["error"] as $err):?>
+                    <p class="errors"><?= $err ?></p>
+                    <?php endforeach; ?>
+                </div>
               </div>
-            </div>
+            <?php endif; ?>
             <div class="row mt-2">
               <div class="col-12">
                 <form action="./models/login.php" method="post" class="tm-login-form">

@@ -14,6 +14,9 @@
 
     <script src="assets/scripts/customDZ.js"> </script>
     <!--Custom Script DZ22716 -->
+    <?php if(!isset($_SESSION['user']) && $_GET['page']=='admin'): ?>
+      <script src="assets/scripts/loginCheck.js"></script>
+    <?php endif; ?>
 
     <?php if(isset($_SESSION['user'])): ?>
     <!-- Ukoliko je user setovan -> Skripte za admin stranicu posto je ovo deljeni footer --> 

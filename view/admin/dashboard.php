@@ -1,4 +1,4 @@
-        <div class="container">
+<div class="container">
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
@@ -35,7 +35,7 @@
                         <h2 class="tm-block-title">Notification List</h2>
                         <div class="tm-notification-items">
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new <a href="#"
                                             class="tm-notification-link">product updates</a>. Check new orders.</p>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Oliver Too</b> and <b>6 others</b> sent you existing <a href="#"
                                             class="tm-notification-link">product updates</a>. Read more reports.</p>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Victoria</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">order updates</a>. Read order information.</p>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Laura Cute</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">product records</a>.</p>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Samantha</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">order stuffs</a>.</p>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Sophie</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">product updates</a>.</p>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Lily A</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">product updates</a>.</p>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Amara</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">product updates</a>.</p>
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
+                                <div class="tm-gray-circle"><img src="assets/img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Cinthela</b> and <b>6 others</b> sent you <a href="#"
                                             class="tm-notification-link">product updates</a>.</p>
