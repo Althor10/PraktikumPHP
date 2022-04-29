@@ -51,9 +51,9 @@
                       Login
                     </button>
                   </div>
-                  <button class="mt-5 btn btn-primary btn-block text-uppercase">
-                    Forgot your password?
-                  </button>
+                  <a class="mt-5 btn btn-primary btn-block text-uppercase" href="index.php?page=admin&subpage=registration">
+                    Register?
+                  </a>
                 </form>
               </div>
             </div>

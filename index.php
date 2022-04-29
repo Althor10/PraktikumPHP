@@ -2,24 +2,48 @@
 include "config/connection.php";
 session_start();
 $page = "";
+$subpage = "";
 
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }
 
+if(isset($_GET['subpage'])){
+    $subpage = $_GET['subpage'];
+}
+
 if($page == 'admin'){
     include "view/admin/ahead.php";
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['user']) && $subpage == "")
+    {
         include "view/admin/authnav.php";
         include "view/admin/dashboard.php";
-    }else 
-        {include "view/admin/aheader.php"; 
-        include "view/admin/login.php";}
+    }elseif(!isset($_SESSION['user']) && $subpage != "" )
+    {
+        include "view/admin/aheader.php"; 
+     switch($subpage)
+     {
+         case "registration":
+            include "view/admin/aregistration.php";
+        //default: 
+        //     include "view/admin/login.php";
+     }   
+    }elseif(isset($_SESSION['user']) && $subpage != "")
+    {
+        include "view/admin/authnav.php";
+
+    }else
+    {
+        include "view/admin/aheader.php"; 
+        include "view/admin/login.php";
+    }
     include "view/admin/afooter.php";
-}elseif($page=="logout"){
+}elseif($page=="logout")
+{
     include "models/logout.php";
 }
-else{
+else
+{
 include "view/head.php";
 include "view/header.php";
 include "view/nav.php";

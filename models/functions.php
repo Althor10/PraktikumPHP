@@ -19,3 +19,10 @@ function error($errors, $name) {
         echo "";
     }
 }
+
+function insertUser($first,$last,$username,$password,$email){
+    global $conn;
+    $insert = $conn->prepare("INSERT INTO pp_users VALUES('',?,?,?,?,DEFAULT,?,CURRENT_TIMESTAMP )");
+    $result = $insert->execute([$first,$last,$password,$username,$email]);
+    return $result;
+}
