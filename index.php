@@ -30,7 +30,29 @@ if($page == 'admin'){
      }   
     }elseif(isset($_SESSION['user']) && $subpage != "")
     {
+        //Switch Case za sub stranice
         include "view/admin/authnav.php";
+        switch($subpage)
+        {
+            case "accounts":
+                include "view/pages/accounts.php";
+                break;
+            case "account":
+                include "view/pages/account.php";
+                break;
+            case "serverStatus":
+                include "view/pages/servStatus.php";
+                break;
+            case "serverDocumentation":
+                include "view/pages/servDocumentation.php";
+                break;
+            case "serverExport":
+                include "view/pages/servExport.php";
+                break;
+            case "serverImport":
+                include "view/pages/serverImport.php";
+                break;
+        }
 
     }else
     {

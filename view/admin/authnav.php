@@ -1,3 +1,10 @@
+<?php 
+    if(isset($_GET['subpage']))
+    {
+        $subPage = $_GET['subpage'];
+    }
+    //U odnosu na subpage parametar menja se navigacioni bar
+?>
 <body id="reportsPage">
     <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
@@ -13,12 +20,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link <?php if(!isset($subPage)) echo"active" ?>" href="index.php?page=admin">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <?php if($_SESSION['user']->role_id == 1): ?>
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -29,25 +37,49 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Daily Report</a>
-                                <a class="dropdown-item" href="#">Weekly Report</a>
-                                <a class="dropdown-item" href="#">Yearly Report</a>
+                                <a class="dropdown-item" href="#">Servers</a>
+                                <a class="dropdown-item" href="#">Export</a>
+                                <a class="dropdown-item" href="#">Import</a>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <?php else: ?>
+                            <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-server"></i>
+                                <span>
+                                    Server <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Server Status</a>
+                                <a class="dropdown-item" href="#">Server Documentation</a>
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="products.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Products
                             </a>
+                        </li> -->
+                        <?php if($_SESSION['user']->role_id == 1):?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if(isset($subPage) && ($subPage == "accounts")) echo"active" ?>" href="index.php?page=admin&subpage=accounts">
+                                   <i class="far fa-user"></i>
+                                   Accounts
+                                </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link  <?php if(isset($subPage) && ($subPage == "account")) echo"active" ?>" href="index.php?page=admin&subpage=account">
+                                 <i class="far fa-user"></i>
+                                 Account
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
@@ -60,12 +92,16 @@
                                 <a class="dropdown-item" href="#">Billing</a>
                                 <a class="dropdown-item" href="#">Customize</a>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link d-block" href="?page=logout">
-                                Admin, <b>Logout</b>
+                                <?php if($_SESSION['user']->role_id == 1):?>
+                                    Admin, <b>Logout</b>
+                                <?php else:?>
+                                    User, <b>Logout</b>
+                                <?php endif; ?>
                             </a>
                         </li>
                     </ul>
