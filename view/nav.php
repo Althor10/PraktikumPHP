@@ -1,8 +1,7 @@
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <?php 
-        $queryNav = "SELECT * FROM pp_nav";
-        $resNav = executeQuery($queryNav);
+        $resNav = getNav();
       ?>
       <li class="sidebar-brand">
         <a class="smooth-scroll" href="#Header"></a>

@@ -17,8 +17,7 @@
             <i class="fas fa-bars tm-nav-icon"></i>
           </button>
         <?php 
-          $query= "SELECT * FROM pp_nav WHERE adm = 1";
-          $navs = executeQuery($query);
+          $navs = getAdminNav();
         ?>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">

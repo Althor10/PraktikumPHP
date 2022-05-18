@@ -1,6 +1,5 @@
 <?php 
-  $query = "SELECT * FROM pp_social";
-  $allSocial = executeQuery($query);
+  $allSocial = allSocial();
 ?> 
 <footer id="Contact">
   <div class="container">

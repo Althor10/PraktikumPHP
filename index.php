@@ -1,6 +1,8 @@
 <?php 
-include "config/connection.php";
 session_start();
+include "config/connection.php";
+include "models/functions.php";
+
 $page = "";
 $subpage = "";
 
@@ -12,6 +14,7 @@ if(isset($_GET['subpage'])){
     $subpage = $_GET['subpage'];
 }
 
+// Logika slicna WordPress-u gde ce biti ista stranica ($page) ali se menja sta se pokazuje ako je covek logovan ili ne
 if($page == 'admin'){
     include "view/admin/ahead.php";
     if(isset($_SESSION['user']) && $subpage == "")
@@ -34,9 +37,6 @@ if($page == 'admin'){
         include "view/admin/authnav.php";
         switch($subpage)
         {
-            case "accounts":
-                include "view/pages/accounts.php";
-                break;
             case "account":
                 include "view/pages/account.php";
                 break;
@@ -66,6 +66,7 @@ if($page == 'admin'){
 }
 else
 {
+    // U slucaju da nisu Admin stranice
 include "view/head.php";
 include "view/header.php";
 include "view/nav.php";

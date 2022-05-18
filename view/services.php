@@ -1,6 +1,5 @@
 <?php 
-  $queryServices = "SELECT * FROM pp_services AS s INNER JOIN pp_images AS i on s.img_id=i.id";
-  $resServices = executeQuery($queryServices);
+  $resServices = getServiceImages();
   ?>
 <a href="#Services" class="mscroll"><img src="assets/images/mouse-icon.png" alt="mouse icon"></a>
 <section id="Services">

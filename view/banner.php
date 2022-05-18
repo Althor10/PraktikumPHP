@@ -1,10 +1,9 @@
 <?php 
-  $query = "SELECT * FROM pp_images WHERE img_alt = 'site-logo1'";
-  $execQuery = executeQuery($query);
+  $images = getImages();
 ?>
 <section id="Banner">
   <div class="logo">
-    <?php foreach($execQuery as $img): ?>
+    <?php foreach($images as $img): ?>
     <img src="<?=$img->img_path?>">
     <?php endforeach; ?>
   </div>

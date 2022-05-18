@@ -1,7 +1,6 @@
 <section id="Testimonials">
   <?php 
-    $queryTestimonails = "Select * From pp_testimonials";
-    $resTestimonials = executeQuery($queryTestimonails);
+    $resTestimonials = getTestimonials();
     $br = 1;
   ?>
    <div class="container">

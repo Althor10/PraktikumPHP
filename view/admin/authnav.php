@@ -64,21 +64,12 @@
                                 Products
                             </a>
                         </li> -->
-                        <?php if($_SESSION['user']->role_id == 1):?>
-                            <li class="nav-item">
-                                <a class="nav-link <?php if(isset($subPage) && ($subPage == "accounts")) echo"active" ?>" href="index.php?page=admin&subpage=accounts">
-                                   <i class="far fa-user"></i>
-                                   Accounts
-                                </a>
-                        </li>
-                        <?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link  <?php if(isset($subPage) && ($subPage == "account")) echo"active" ?>" href="index.php?page=admin&subpage=account">
                                  <i class="far fa-user"></i>
-                                 Account
+                                 Account<?php if(isset($_SESSION['user']) && ($_SESSION['user']->role_id == 1)) echo "s"; ?>
                                 </a>
                             </li>
-                        <?php endif; ?>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">

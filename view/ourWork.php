@@ -5,8 +5,7 @@
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
         <div class="grey-box">
           <?php 
-            $oneImageQuery = "SELECT * FROM pp_images WHERE img_alt = 'Sponser'";
-            $resOIQ = executeQuery($oneImageQuery);
+            $resOIQ = getSponsorImages();
           ?>
           <?php foreach ($resOIQ as $roiq): ?>
           <img src="<?= $roiq->img_path ?> " alt="<?= $roiq->img_alt ?>">
@@ -18,8 +17,7 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
       <?php 
-        $queryServices = "SELECT * FROM pp_sponsors AS sp INNER JOIN pp_images AS im ON sp.img_id=im.id;";
-        $resServices = executeQuery($queryServices);
+        $resServices = getSponsors();
         $br1 = 1
       ?>
       <?php 

@@ -21,11 +21,11 @@
     <?php if(isset($_SESSION['user'])): ?>
     <!-- Ukoliko je user setovan -> Skripte za admin stranicu posto je ovo deljeni footer --> 
       
-    <script src="assets/js/moment.min.js"></script>
+    <script src="./assets/js/moment.min.js"></script>
     <!-- https://momentjs.com/ -->
-    <script src="assets/js/Chart.min.js"></script>
+    <script src="./assets/js/Chart.min.js"></script>
     <!-- http://www.chartjs.org/docs/latest/ -->
-    <script src="assets/js/tooplate-scripts.js"></script>
+    <script src="./assets/js/tooplate-scripts.js"></script>
     <script>
         Chart.defaults.global.defaultFontColor = 'white';
         let ctxLine,

@@ -1,6 +1,5 @@
 <?php 
-  $logoIMGQuery = "SELECT * FROM pp_images WHERE img_alt = 'mobile_logo'";
-  $resLIQ = executeQuery($logoIMGQuery);
+  $resLIQ = mobileLogo();
 ?>
 <header>
     <div class="mobile-logo">
