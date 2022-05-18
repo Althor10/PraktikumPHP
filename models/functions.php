@@ -50,7 +50,7 @@ function mobileLogo()
 {
     $logoIMGQuery = "SELECT * FROM pp_images WHERE img_alt = 'mobile_logo'";
     $resLIQ = executeQuery($logoIMGQuery);
-    return $$resLIQ;
+    return $resLIQ;
 }
 
 //Navigation
@@ -100,4 +100,12 @@ function getAdminNav()
     $query= "SELECT * FROM pp_nav WHERE adm = 1";
     $navs = executeQuery($query);
     return $navs;
+}
+
+//Get Plans
+function getPlans()
+{
+    $query = "SELECT * FROM pp_plan as pp INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
+    $plans = executeQuery($query);
+    return $plans;
 }

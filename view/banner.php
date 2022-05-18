@@ -4,7 +4,7 @@
 <section id="Banner">
   <div class="logo">
     <?php foreach($images as $img): ?>
-    <img src="<?=$img->img_path?>">
+   <a href="<?=ABSOLUTE_PATH."?page=home"?>" > <img src="<?=$img->img_path?>"></a>
     <?php endforeach; ?>
   </div>
   <div class="blacksection">

@@ -23,5 +23,9 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/custom-responsive-style.css">
+<!-- FOR WEB DEV PAGE -->
+<?php if($page =="web-dev"):?>
+ <link rel="stylesheet" type="text/css" href="assets/css/webDev.css">
+<?php endif; ?>
 </head>
 <body>

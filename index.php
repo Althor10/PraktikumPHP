@@ -38,19 +38,19 @@ if($page == 'admin'){
         switch($subpage)
         {
             case "account":
-                include "view/pages/account.php";
+                include "view/admin/pages/account.php";
                 break;
             case "serverStatus":
-                include "view/pages/servStatus.php";
+                include "view/admin/pages/servStatus.php";
                 break;
             case "serverDocumentation":
-                include "view/pages/servDocumentation.php";
+                include "view/admin/pages/servDocumentation.php";
                 break;
             case "serverExport":
-                include "view/pages/servExport.php";
+                include "view/admin/pages/servExport.php";
                 break;
             case "serverImport":
-                include "view/pages/serverImport.php";
+                include "view/admin/pages/serverImport.php";
                 break;
         }
 
@@ -70,9 +70,12 @@ else
 include "view/head.php";
 include "view/header.php";
 include "view/nav.php";
+if($page != "login")
+{
+    include "view/banner.php";
+}
 switch($page){
     case "home":
-        include "view/banner.php";
         include "view/services.php";
         include "view/ourWork.php";
         include "view/testimonials.php";
@@ -81,11 +84,18 @@ switch($page){
         include "view/login.php";
         break;
     case "digital-marketing":
-        include "view/banner.php";
         include "view/digital-marketing.php";
         break;
+    case "web-dev":
+        include "view/pages/web-dev.php";
+        break;
+    case "web-hosting":
+        include "view/pages/web-hosting.php";
+        break;
+    case "getStarted":
+        include "view/pages/get-Started.php";
+        break;    
     default:
-        include "view/banner.php";
         include "view/services.php";
         include "view/ourWork.php";
         include "view/testimonials.php";

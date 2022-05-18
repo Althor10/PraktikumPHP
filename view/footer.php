@@ -18,5 +18,9 @@
 <div class="copyright"><p>Danilo Zdravković 227/16 IT - 2021</p> </div>
 <script type="text/javascript" src="assets/scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="assets/scripts/plugin-active.js"></script>
+<!-- FOR WEB DEV PAGE -->
+<?php if($page=="web-dev"):?>
+  <script type="text/javascript" src="assets/js/webDev.js"></script>
+<?php endif; ?>
 </body>
 </html>
