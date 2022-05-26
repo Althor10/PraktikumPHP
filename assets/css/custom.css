@@ -6,6 +6,6 @@
     background-color: #bb0a1e;
     color: #ffff;
 }
-#hidden {
+.hidden {
     display: none;
 }

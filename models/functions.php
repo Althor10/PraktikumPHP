@@ -8,7 +8,7 @@ function redirect($url) {
 //Authorize user. 
 function authorize() {
     if(!$_SESSION["user"]) {
-        redirect("login.php");
+        redirect("index.php?page=login");
     }
 }
 
@@ -105,7 +105,42 @@ function getAdminNav()
 //Get Plans
 function getPlans()
 {
-    $query = "SELECT * FROM pp_plan as pp INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
+    $query = "SELECT *,pp.id as ppId FROM pp_plan as pp INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
     $plans = executeQuery($query);
     return $plans;
+}
+
+//Get Plan
+function getPlan($id)
+{
+    if(isset($id)){
+        $id = $_GET['id'];
+    } 
+    else 
+    {
+        $_SESSION['error'] = "No id Sent!";
+        return $_SESSION['error'];
+    }
+    $query = "SELECT *,pp.id as ppId, ph.id as phId FROM pp_plan as pp INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE pp.id = $id";
+    $plan = executeQuery($query);
+    return $plan;
+}
+
+function nextIPAdrress()
+{
+    $ip1 = rand(1,255);
+    $ip2 = rand(1,255);
+    $ip3 = rand(1,255);
+    $ipAddress = $ip1.".".$ip2.".".$ip3;
+    return $ipAddress;
+}
+
+function newOrder($userId,$planId)
+{
+    global $conn;
+    $ipAddress = nextIPAdrress();
+    $domain = "http://myserver".$userId.".com";
+    $insert = $conn->prepare("INSERT INTO pp_server VALUES('',(SELECT id FROM pp_users WHERE id = ?),(SELECT id FROM pp_plan WHERE id = ?),DEFAULT,?,?)");
+    $result = $insert->execute([$userId,$planId,$domain,$ipAddress]);
+    return $result;
 }

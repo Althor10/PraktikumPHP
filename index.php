@@ -9,6 +9,10 @@ $subpage = "";
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }
+if(!isset($_GET['id']) && ($page == "buyServer" || $page == "order"))
+{ 
+    redirect('./index.php?page=home');
+}
 
 if(isset($_GET['subpage'])){
     $subpage = $_GET['subpage'];
@@ -94,12 +98,19 @@ switch($page){
         break;
     case "getStarted":
         include "view/pages/get-Started.php";
-        break;    
+        break;
+    case "buyServer":
+        include "view/pages/buyServer.php";
+        break;
+    case "order":
+        include "view/pages/order.php";
+        break;        
     default:
         include "view/services.php";
         include "view/ourWork.php";
         include "view/testimonials.php";
         break;
+    
 }
 include "view/footer.php";
 }

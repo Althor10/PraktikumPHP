@@ -101,5 +101,7 @@ $(document).ready(function()
         registerValidate();
     });
 
+    //Order Page
+    $('[data-toggle="tooltip"]').tooltip();
 
 });

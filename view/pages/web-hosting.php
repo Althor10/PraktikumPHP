@@ -28,7 +28,7 @@
               <?php endif; ?>
             </ul>
             <?php if(isset($_SESSION['user'])): ?>
-                <a href="?page=getStarted" class="btn btn-lg btn-block btn-primary">Get Started</a>
+                <a href="?page=buyServer&id=<?= $pl->ppId ?>" class="btn btn-lg btn-block btn-primary">Get Started</a>
             <?php else: ?>
                 <a href="?page=admin" class="btn btn-lg btn-block btn-primary">Get Started</a>
             <?php endif; ?> 

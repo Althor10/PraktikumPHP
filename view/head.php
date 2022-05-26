@@ -27,5 +27,14 @@
 <?php if($page =="web-dev"):?>
  <link rel="stylesheet" type="text/css" href="assets/css/webDev.css">
 <?php endif; ?>
+<?php if($page =="buyServer"):?>
+ <link rel="stylesheet" type="text/css" href="assets/css/buyServer.css">
+<?php endif; ?>
+<?php if($page =="order"):?>
+ <link rel="stylesheet" type="text/css" href="assets/css/order.css">
+ <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+ <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<?php endif; ?>
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 </head>
 <body>

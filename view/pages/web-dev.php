@@ -1,9 +1,8 @@
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="card px-1 py-4">
         <div class="card-body">
-            <h6 class="card-title mb-3">This appointment is for</h6>
-            <div class="d-flex flex-row"> <label class="radio mr-1"> <input type="radio" name="add" value="anz" checked> <span> <i class="fa fa-user"></i> Anz CMK </span> </label> <label class="radio"> <input type="radio" name="add" value="add"> <span> <i class="fa fa-plus-circle"></i> Add </span> </label> </div>
-            <h6 class="information mt-4">Please provide following information about Anz CMK</h6>
+            <h6 class="card-title mb-3">This appointment is for?</h6>
+            <h6 class="information mt-4">Please provide following information about your needs</h6>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -13,7 +12,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <div class="input-group"> <input class="form-control" type="text" placeholder="Mobile"> </div>
+                        <div class="input-group"> <input class="form-control" type="text" placeholder="In short, what do you need?"> </div>
                     </div>
                 </div>
             </div>

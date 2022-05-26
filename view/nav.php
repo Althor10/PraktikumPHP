@@ -23,14 +23,13 @@
           <!-- Ako nije setovan user i adm (u bazi) je 1 preskace te elemente -->
           <?php elseif(!isset($_SESSION['user']) && $n->adm == 1): ?>
           <?php elseif($page != "home"): ?>
-            <?php $br++; ?>
-            <?php if($br>1)continue;?>
             <!-- Da ne bi imali linkove koji ne pointuju nigde -->
-            <a class="normal-nav" href="<?= ABSOLUTE_PATH.'?page=home'?>"> Home </a> 
+            <a class="normal-nav" href="<?= ABSOLUTE_PATH.$n->path?>"><?= $n->name; ?> </a> 
           <?php elseif($n->sub == 1 && $page == "home"): ?>
              <!-- Inicijalni print za elemente --> 
              <a class="smooth-scroll" href="<?= $n->path;?>"><?= $n->name ?></a>
           <?php else: ?>
+            <?php if($n->name == "Home")continue;?>
             <a class="normal-nav" href="<?= $_SERVER['PHP_SELF'].$n->path;?>"><?= $n->name ?></a>
           <?php endif; ?>
 
