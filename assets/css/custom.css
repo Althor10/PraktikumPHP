@@ -9,3 +9,19 @@
 .hidden {
     display: none;
 }
+
+#printReport
+{
+    width: 140px;
+    float: right;
+}
+
+.background-white
+{
+    background-color: white;
+}
+
+.background-gray
+{
+    background-color:#4e657a;
+}

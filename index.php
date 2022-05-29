@@ -9,14 +9,18 @@ $subpage = "";
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }
+
+if(isset($_GET['subpage'])){
+    $subpage = $_GET['subpage'];
+}
 if(!isset($_GET['id']) && ($page == "buyServer" || $page == "order"))
 { 
     redirect('./index.php?page=home');
 }
 
-if(isset($_GET['subpage'])){
-    $subpage = $_GET['subpage'];
-}
+//Admin Rules
+include "middleware/adminRules.php";
+
 
 // Logika slicna WordPress-u gde ce biti ista stranica ($page) ali se menja sta se pokazuje ako je covek logovan ili ne
 if($page == 'admin'){
@@ -45,7 +49,7 @@ if($page == 'admin'){
                 include "view/admin/pages/account.php";
                 break;
             case "serverStatus":
-                include "view/admin/pages/servStatus.php";
+                include "view/admin/pages/serverStatus.php";
                 break;
             case "serverDocumentation":
                 include "view/admin/pages/servDocumentation.php";
@@ -55,6 +59,12 @@ if($page == 'admin'){
                 break;
             case "serverImport":
                 include "view/admin/pages/serverImport.php";
+                break;
+            case "servers":
+                include "view/admin/pages/servers.php";
+                break;
+            case "web-dev":
+                include "view/admin/pages/web-dev.php";
                 break;
         }
 
@@ -83,9 +93,6 @@ switch($page){
         include "view/services.php";
         include "view/ourWork.php";
         include "view/testimonials.php";
-        break;
-    case "login":
-        include "view/login.php";
         break;
     case "digital-marketing":
         include "view/digital-marketing.php";

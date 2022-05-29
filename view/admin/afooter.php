@@ -25,6 +25,8 @@
     <script src="./assets/js/Chart.min.js"></script>
     <!-- http://www.chartjs.org/docs/latest/ -->
     <script src="./assets/js/tooplate-scripts.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript"  src="./assets/scripts/servers.js"></script>
     <script>
         Chart.defaults.global.defaultFontColor = 'white';
         let ctxLine,

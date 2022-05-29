@@ -8,7 +8,14 @@ function redirect($url) {
 //Authorize user. 
 function authorize() {
     if(!$_SESSION["user"]) {
-        redirect("index.php?page=login");
+        redirect("index.php?page=admin");
+    }
+}
+
+function authorizeAdm()
+{
+    if($_SESSION['user']->role_id != 1) {
+        redirect("index.php?page=admin");
     }
 }
 
@@ -143,4 +150,39 @@ function newOrder($userId,$planId)
     $insert = $conn->prepare("INSERT INTO pp_server VALUES('',(SELECT id FROM pp_users WHERE id = ?),(SELECT id FROM pp_plan WHERE id = ?),DEFAULT,?,?)");
     $result = $insert->execute([$userId,$planId,$domain,$ipAddress]);
     return $result;
+}
+
+function getSInfo($id)
+{
+    $query = "SELECT * FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE user_id = $id";
+    $getSInfo = executeQuery($query);
+    return $getSInfo;
+}
+
+function getAllServers()
+{
+    $query = "SELECT *,ps.id as psid FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id INNER JOIN pp_users as pu ON ps.user_id = pu.id";
+    $getServers = executeQuery($query);
+    return $getServers;
+}
+
+function getAllRequests()
+{
+    $query = "SELECT * FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
+    $getRequests = executeQuery($query);
+    return $getRequests;
+}
+
+function getUsersWebsites($id)
+{
+    $query = "SELECT *,ps.id as psid FROM pp_users as pu INNER JOIN pp_server as ps ON pu.id = ps.user_id WHERE pu.id = $id";
+    $getServers = executeQuery($query);
+    return $getServers;
+}
+
+function getAssignedDev($id)
+{
+    $query = "SELECT * from pp_users as pu INNER JOIN pp_devwork as pd on pu.id=pd.assign_id WHERE pd.assign_id=$id";
+    $getDev = executeQuery($query);
+    return $getDev;
 }

@@ -14,6 +14,7 @@
         <!-- Ako jeste settovan user onda ne print-a login -->
       <?php if(isset($_SESSION['user']) && $n->name == "Login") continue; ?>
        
+      <?php if(isset($_SESSION['user']) && $_SESSION['user']->role_id == 2 && $n->name == "Servers") continue; ?>
       <!-- Nastavak print-a navigacije -->
         <li class="sidebar-nav-item">
         <!-- Ako je login ili Logout imaju drugaciji class element --> 

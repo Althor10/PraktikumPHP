@@ -37,10 +37,17 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Servers</a>
+                                <a class="dropdown-item" href="index.php?page=admin&subpage=servers">Servers</a>
+                                <a class="dropdown-item" href="index.php?page=admin&subpage=serverStatus">My Server</a>
                                 <a class="dropdown-item" href="#">Export</a>
                                 <a class="dropdown-item" href="#">Import</a>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?page=admin&subpage=web-dev">
+                                <i class="fas fa-laptop"></i>
+                                Web-Dev Requests
+                            </a>
                         </li>
                         <?php else: ?>
                             <li class="nav-item dropdown">
@@ -53,17 +60,12 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Server Status</a>
+                                <a class="dropdown-item" href="index.php?page=admin&subpage=serverStatus">Server Status</a>
                                 <a class="dropdown-item" href="#">Server Documentation</a>
                             </div>
                         </li>
                         <?php endif; ?>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Products
-                            </a>
-                        </li> -->
+                       
                             <li class="nav-item">
                                 <a class="nav-link  <?php if(isset($subPage) && ($subPage == "account")) echo"active" ?>" href="index.php?page=admin&subpage=account">
                                  <i class="far fa-user"></i>
