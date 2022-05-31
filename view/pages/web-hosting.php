@@ -3,7 +3,7 @@
       <h1 class="display-4">Pricing</h1>
       <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
     </div>
-
+    <?php if(isset($_SESSION['user'])) logActionOrError("Visited Web-Hosting page"); ?>
     <div class="container">
       <div class="card-deck mb-3 text-center">
 

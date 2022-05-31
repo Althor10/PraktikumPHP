@@ -35,16 +35,19 @@
             $insert = newRequest($serverId,$request);
             if($insert)
             {
+                logActionOrError("Submitted a new Web-Dev request!");
                 $_SESSION['success'][]= "Your Request has been submitted!";
                 redirect("../index.php?page=web-dev");
             }
             else
             {
+                logActionOrError("Couldn't submit the Web Dev Request, didn't insert into the database.", true);
                 $_SESSION['error'] []= "There was an error when submitting your request!";
                 redirect("../index.php?page=web-dev");
             }
         }else 
         {
+            logActionOrError("There was an error with the data that was sent for the Web Dev request.", true);
             $_SESSION['error'][] = $errors;
             redirect("../index.php?page=web-dev");
         }

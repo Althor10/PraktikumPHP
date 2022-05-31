@@ -1,4 +1,4 @@
-<?php $authorImg = getAuthorImg(); ?>
+<?php $authorImg = getImg("author"); if(isset($_SESSION['user'])) logActionOrError("Visited About Page");?>
 <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="author-section">
     	<div class="container">
     		<div class="row d-flex no-gutters">
@@ -6,7 +6,7 @@
     				<div class="img-about img d-flex align-items-stretch">
     					<div class="overlay"></div>
                         <?php foreach($authorImg as $img):?> 
-	    				<img class="img d-flex align-self-stretch align-items-center" src="<?= $img->img_path?>">
+	    				<img class="img d-flex align-self-stretch align-items-center" src="<?= $img->img_path?>" alt="<?= $img->img_alt?>">
                         <?php endforeach; ?>
 	    				</img>
     				</div>

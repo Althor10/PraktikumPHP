@@ -14,11 +14,13 @@
         }
         else
         {
+            logActionOrError("AssignDev was sent but hasn't been inserted into the database", true);
             $_SESSION['error'][] = "Unable to assign a developer. Check that the parameters were sent properly.";
         }
 
     }
     else
     {
+        logActionOrError("500, taskId and devId for AssignDev wasn't sent", true);
         $_SESSION['error'][] = "Unable to assign a developer. Check that the parameters were sent properly.";
     }

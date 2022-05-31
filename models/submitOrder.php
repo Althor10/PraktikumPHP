@@ -15,12 +15,14 @@ if(isset($_POST['submitOrder']))
         $newOrder = newOrder($userId,$planId);
         if($newOrder)
         {
+            logActionOrError("Submitted a new order of a server");
             $response = ["msg" => "Success! New Order Created!" ];
             $statusCode = 201;
         }
     }
     catch (PDOException $e)
         {   
+            logActionOrError("500, There was an error when trying to submit Order for the server", true);
             $response = ["msg" => $e->getMessage()];
             $statusCode = 500;
         }

@@ -153,9 +153,9 @@ function drawPieChart() {
         position: "top"
       }
     };
-    var pages;
-    var numberOfVisits;
-    var persentage;
+    var freeSpace = document.getElementById('freeSpace').value / 1000;
+    var storageSpace = document.getElementById('storageSpace').value / 1000;
+    var fullSpace = document.getElementById('fullSpace').value / 1000;
     configPie = {
       type: "pie",
       data: {

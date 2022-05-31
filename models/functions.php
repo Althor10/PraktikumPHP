@@ -236,9 +236,37 @@ function getUsers()
     return $getTasks;
 }
 
-function getAuthorImg()
+// Get Author Img
+function getImg($string)
 {
-    $query = "SELECT * FROM pp_images WHERE img_alt = 'author'";
+    $query = "SELECT * FROM pp_images WHERE img_alt = '$string'";
     $getImg = executeQuery($query);
     return $getImg;
 }
+
+//Log Data from file
+function getLogData()
+{
+    $fileName = "data/log.txt";
+    $file = file($fileName);
+
+    return $file;
+}
+
+//Error Log Fetch
+function getErrorLogs()
+{
+    $fileName = "data/error.txt";
+    $file = file($fileName);
+
+    return $file;
+}
+
+//Getting Users and their images
+function getUserAndImg($username)
+{
+    $query = "SELECT * FROM pp_users as pu INNER JOIN pp_user_img as pui ON pu.id = pui.user_id INNER JOIN pp_images as ppi ON pui.img_id = ppi.id WHERE pu.usernm = '$username'";
+    $getUsrImg = executeQuery($query);
+    return $getUsrImg;
+}
+

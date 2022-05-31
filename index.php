@@ -93,6 +93,7 @@ if($page != "login")
 }
 switch($page){
     case "home":
+        logActionOrError("Visited Home Page");
         include "view/services.php";
         include "view/ourWork.php";
         include "view/testimonials.php";

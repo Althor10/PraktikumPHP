@@ -30,7 +30,7 @@ function logActionOrError($message, $error = false){
 		$file = fopen(dirname(__DIR__, 1) . '/data/log.txt', "a+");
 	}
 	
-	$korisnik = $_SESSION["user"]["username"];
+	$korisnik = $_SESSION["user"]->usernm;
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$datum = date('Y-m-d H:i:s');
 	

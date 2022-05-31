@@ -1,4 +1,4 @@
-<div class="hidden">
+<div class="hidden"> <?php if(isset($_SESSION['user'])) logActionOrError("Visited Buy Server page.");?>
     <?php if(isset($_SESSION['error'])): ?>
         <script>
             alert("No Ids sent!");

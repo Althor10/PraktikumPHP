@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container py-5"> <?php if(isset($_SESSION['user'])) logActionOrError("Visited Order page."); ?>
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
             <h1 class="display-6"><img src="assets/images/ds-logo-inverted.png"> Payment Form</h1>

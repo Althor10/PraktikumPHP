@@ -4,7 +4,7 @@
     $id = $_SESSION['user']->uid; 
     $websites = getUsersWebsites($id);
  }
-    
+ if(isset($_SESSION['user'])) logActionOrError("Visited Web-Dev page");
 ?>
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="card px-1 py-4">

@@ -40,8 +40,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="index.php?page=admin&subpage=servers">Servers</a>
                                 <a class="dropdown-item" href="index.php?page=admin&subpage=serverStatus">My Server</a>
-                                <a class="dropdown-item" href="#">Export</a>
-                                <a class="dropdown-item" href="#">Import</a>
                             </div>
                         </li>
                         <li class="nav-item">
