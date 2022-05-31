@@ -1,4 +1,5 @@
 <section id="OurBlog"> 
+  <?php if(isset($_SESSION['user'])) logActionOrError("Visited Digital-Marketing page"); ?>
   <div class="container">
     <h2>Digital Marketing</h2>
     <p>Digital marketing refers to advertising delivered through digital channels such as search engines, <br /> websites, social media, email, and mobile apps.</p>

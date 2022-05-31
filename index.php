@@ -99,7 +99,7 @@ switch($page){
         include "view/testimonials.php";
         break;
     case "digital-marketing":
-        include "view/digital-marketing.php";
+        include "view/pages/digital-marketing.php";
         break;
     case "web-dev":
         include "view/pages/web-dev.php";

@@ -9,7 +9,7 @@ function drawLineChart() {
           {
             scaleLabel: {
               display: true,
-              labelString: "Hits"
+              labelString: "Visits"
             }
           }
         ]
@@ -34,7 +34,7 @@ function drawLineChart() {
         ],
         datasets: [
           {
-            label: "Latest Hits",
+            label: "Latest Visits",
             data: [88, 68, 79, 57, 50, 55, 70],
             fill: false,
             borderColor: "rgb(75, 192, 192)",
@@ -75,13 +75,13 @@ function drawBarChart() {
       scales: {
         yAxes: [
           {
-            barPercentage: 0.2,
+            barPercentage: .7,
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
             },
             scaleLabel: {
               display: true,
-              labelString: "Hits"
+              labelString: "Pages"
             }
           }
         ]
@@ -91,6 +91,19 @@ function drawBarChart() {
     optionsBar.maintainAspectRatio =
       $(window).width() < width_threshold ? false : true;
 
+      var webHostingPages = $(".Web-Hosting").length;
+      var aboutPages = $(".About").length;
+      var webDevPages = $(".Web-Dev").length;
+      var homePages = $(".Home").length;
+      var digitalMarketings = $(".Digital-Marketing").length;
+
+      var fullPercent = webDevPages+aboutPages+webHostingPages+homePages+digitalMarketings;
+
+      var webHostingPagesPercentage = Math.ceil((webHostingPages / fullPercent)* 100);
+      var aboutPagesPercentage = Math.ceil((aboutPages / fullPercent)* 100);
+      var webDevPagesPercentage = Math.ceil((webDevPages / fullPercent)* 100);
+      var homePagesPercentage = Math.ceil((homePages / fullPercent)* 100);
+      var digitalMarketingsPercentage = Math.ceil((digitalMarketings / fullPercent)* 100);
     /**
      * COLOR CODES
      * Red: #F7604D
@@ -105,19 +118,17 @@ function drawBarChart() {
     configBar = {
       type: "horizontalBar",
       data: {
-        labels: ["Red", "Aqua", "Green", "Yellow", "Purple", "Orange", "Blue"],
+        labels: ["Home", "About", "Web-Dev", "Web-Hosting", "Digital-Marketing",],
         datasets: [
           {
-            label: "# of Hits",
-            data: [33, 40, 28, 49, 58, 38, 44],
+            label: "% of Visits",
+            data: [homePagesPercentage, aboutPagesPercentage, webDevPagesPercentage, webHostingPagesPercentage, digitalMarketingsPercentage],
             backgroundColor: [
               "#F7604D",
               "#4ED6B8",
               "#A8D582",
               "#D7D768",
-              "#9D66CC",
-              "#DB9C3F",
-              "#3889FC"
+              "#9D66CC"
             ],
             borderWidth: 0
           }

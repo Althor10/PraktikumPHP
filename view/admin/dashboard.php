@@ -1,21 +1,40 @@
-            <!-- row -->
+            <?php if($_SESSION['user']->role_id == 1):?> 
             <div class="row tm-content-row">
+
+                <?php 
+                    $getVisits = getLogData();
+                    foreach($getVisits as $visit):
+                        $exVisit = explode("\t",$visit);
+
+                        //Dates
+                        $exDate = explode(" ",trim($exVisit[2]));
+                        $date = $exDate[0];
+                        $time = $exDate[1];
+
+                        //Pages
+                        $exPage = explode("Visited ",$exVisit[3]);
+                        $page = $exPage[1];
+                        
+                ?>     
+                 <input type="hidden" class="<?=$page?>" value="<?=$page?>" data-date="<?=$exVisit[2]?>"/>
+                <?php endforeach ?>
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
                         <h2 class="tm-block-title">Popular Pages by Month</h2>
-                        <input type="hidden" id="byMonthData" value=""/>
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>
+
+
+
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
                         <h2 class="tm-block-title">Popular Pages Last 24h</h2>
-                        <input type="hidden" id="byDayData" value=""/>
                         <canvas id="barChart"></canvas>
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col hidden">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller">
                         <h2 class="tm-block-title">Visits by Persentage</h2>
                         <div id="pieChartContainer">
@@ -25,7 +44,7 @@
                 </div>
 
 
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
                         <h2 class="tm-block-title">Error Notification</h2>
                         <div class="tm-notification-items">
@@ -93,3 +112,21 @@
                 </div>
             </div>
         </div>
+        <?php else: ?>
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                        <div class="tm-bg-primary-dark tm-block">
+                            <h2 class="tm-block-title">Popular Pages by Month</h2>
+                            <input type="hidden" id="byMonthData" value=""/>
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                        <div class="tm-bg-primary-dark tm-block">
+                            <h2 class="tm-block-title">Popular Pages Last 24h</h2>
+                            <input type="hidden" id="byDayData" value=""/>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+            </div>
+        <?php endif; ?>

@@ -4,3 +4,11 @@ dz22716 	 ::1 	 2022-05-31 13:39:49 	 Visited About Page
 dz22716 	 ::1 	 2022-05-31 13:40:14 	 Visited About Page 
 testUser1 	 ::1 	 2022-05-31 14:27:06 	 Visited Home Page 
 testUser1 	 ::1 	 2022-05-31 14:27:11 	 Visited About Page 
+dz22716 	 ::1 	 2022-05-31 15:06:05 	 Visited Home Page 
+dz22716 	 ::1 	 2022-05-31 15:06:08 	 Visited Home Page 
+dz22716 	 ::1 	 2022-05-31 15:06:09 	 Visited Home Page 
+dz22716 	 ::1 	 2022-05-31 15:06:18 	 Visited Web-Dev page 
+dz22716 	 ::1 	 2022-05-31 15:07:20 	 Visited Home Page 
+dz22716 	 ::1 	 2022-05-31 15:08:37 	 Visited Web-Dev page 
+dz22716 	 ::1 	 2022-05-31 15:08:59 	 Visited Web-Dev page 
+dz22716 	 ::1 	 2022-05-31 15:09:09 	 Visited Digital-Marketing page 
