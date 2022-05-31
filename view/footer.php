@@ -29,5 +29,9 @@
   <script type="text/javascript" src="./assets/scripts/order.js"></script>
 <?php endif; ?>
 
+<?php if($page == "web-dev"): ?>
+  <script type="text/javascript" src="./assets/scripts/wp-dev-Submit.js"></script>
+<?php endif; ?>
+
 </body>
 </html>

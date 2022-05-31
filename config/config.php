@@ -1,17 +1,26 @@
 <?php
 define("ABSOLUTE_PATH","http://localhost/PraktikumPHP/");
 
-$env = ABSOLUTE_PATH."/.env";
 
-$envOpen = file($env);
-$print = array();
+define("MYSQL_HOST", env("MYSQL_HOST"));
+define("MYSQL_DBNAME", env("MYSQL_DBNAME"));
+define("MYSQL_USERNAME", env("MYSQL_USERNAME"));
+define("MYSQL_PASSWORD", env("MYSQL_PASSWORD"));
 
-for ($i = 0; $i<count($envOpen);$i++)
-{
-    $print[$i] = explode("=",$envOpen[$i]);
+function env($marker){
+    $niz = file(__DIR__ . "/.env");
+    $trazenaVrednost = "";
+
+    foreach($niz as $red){
+        $red = trim($red);
+
+        list($identifikator, $vrednost) = explode("=", $red);
+
+        if($identifikator == $marker){
+            $trazenaVrednost = $vrednost;
+            break;
+        }
+    }
+
+    return $trazenaVrednost;
 }
-
-define(trim($print[0][0]),trim($print[0][1]));
-define(trim($print[1][0]),trim($print[1][1]));
-define(trim($print[2][0]),trim($print[2][1]));
-define(trim($print[3][0]),trim($print[3][1]));

@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="learnmore">
-      <a href="Learnmore"><span>Learn more</span></a>
+      <a href="index.php?page=web-dev"><span>Learn more</span></a>
     </div>
   </div>
 </section>

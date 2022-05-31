@@ -16,42 +16,27 @@
           >
             <i class="fas fa-bars tm-nav-icon"></i>
           </button>
-        <?php 
-          $navs = getAdminNav();
-        ?>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
-
-              <!-- Pocetak Foreach-a --> 
-              <?php foreach($navs as $nav): ?>
-                <?php if(!isset($_SESSION['user'])): ?>
-                  <!-- Ako user nije setovan !--> 
-                  <?php if($nav->name != "Settings"): ?>
               <li class="nav-item">
-                <!-- Ukoliko user nije setovan samo refreshuje admin stranicu sa obavestenjem --> 
                 <a class="nav-link" href="#">
-                    <?php if($nav->name == "Dashboard"): ?>
-                  <i class="fas fa-tachometer-alt"></i> <?=$nav->name ?>
-                   <?php elseif($nav->name == "Products"): ?>
-                    <i class="fas fa-shopping-cart"></i><?=$nav->name ?>
-                   <?php elseif($nav->name == "Account"): ?>
-                    <i class="far fa-user"></i> <?=$nav->name ?>
-                    <?php else: ?>
-                    <i class="fas fa-cog"></i> <span>  <?=$nav->name ?>
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-                    <?php endif; ?>
-                 <?php endif; ?>
-                <!-- Kraj namestanje izgleda (Bez user-a) -->
-
-              <?php endif; ?>
-                <!-- Kraj logike -->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-cog"></i> Server
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-laptop"></i> Account
                 </a>
               </li>
               
-              <?php endforeach; ?>
-              <!-- KRAJ foreach-a -->
             </ul>
           </div>
         </div>
       </nav>
     </div>
+    

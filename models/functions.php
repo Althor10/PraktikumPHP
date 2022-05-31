@@ -133,6 +133,7 @@ function getPlan($id)
     return $plan;
 }
 
+//Random Generated IP address
 function nextIPAdrress()
 {
     $ip1 = rand(1,255);
@@ -142,6 +143,7 @@ function nextIPAdrress()
     return $ipAddress;
 }
 
+//Ordering a new server
 function newOrder($userId,$planId)
 {
     global $conn;
@@ -152,6 +154,7 @@ function newOrder($userId,$planId)
     return $result;
 }
 
+//Getting server info for the selected user
 function getSInfo($id)
 {
     $query = "SELECT * FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE user_id = $id";
@@ -159,6 +162,7 @@ function getSInfo($id)
     return $getSInfo;
 }
 
+//Fetching All Servers
 function getAllServers()
 {
     $query = "SELECT *,ps.id as psid FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id INNER JOIN pp_users as pu ON ps.user_id = pu.id";
@@ -166,13 +170,15 @@ function getAllServers()
     return $getServers;
 }
 
+//Getting all Requests from users
 function getAllRequests()
 {
-    $query = "SELECT * FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
+    $query = "SELECT *, ps.id as psid, pd.id as pdid FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id";
     $getRequests = executeQuery($query);
     return $getRequests;
 }
 
+//Getting users Websites
 function getUsersWebsites($id)
 {
     $query = "SELECT *,ps.id as psid FROM pp_users as pu INNER JOIN pp_server as ps ON pu.id = ps.user_id WHERE pu.id = $id";
@@ -180,9 +186,52 @@ function getUsersWebsites($id)
     return $getServers;
 }
 
-function getAssignedDev($id)
+//Get Assigned Devs
+function getAssignedDev($id,$servId)
 {
-    $query = "SELECT * from pp_users as pu INNER JOIN pp_devwork as pd on pu.id=pd.assign_id WHERE pd.assign_id=$id";
+    $query = "SELECT *,pd.id as pdid from pp_users as pu INNER JOIN pp_devwork as pd on pu.id=pd.assign_id INNER JOIN pp_server as ps ON pd.server_id=ps.id WHERE pd.assign_id=$id AND ps.id = $servId";
     $getDev = executeQuery($query);
     return $getDev;
+}
+
+//Submitting a new request
+function newRequest($serverId,$request)
+{
+    global $conn;
+    $insert = $conn->prepare("INSERT INTO pp_devwork VALUES ('',(SELECT id FROM pp_server WHERE id = ?),?,DEFAULT)");
+    $result = $insert->execute([$serverId,$request]);
+    return $result;
+}
+
+//Get all Devs
+function getDevelopers()
+{
+    $query = "SELECT * FROM pp_users WHERE dev = 1";
+    $getDevs = executeQuery($query);
+    return $getDevs;
+}
+
+//Get all devs with task
+function devsWithTask($id)
+{
+    $query = "SELECT * FROM pp_users as pu INNER JOIN pp_devwork as pd ON pu.id = pd.assign_id WHERE pu.id = $id";
+    $getTasks = executeQuery($query);
+    return $getTasks;
+}
+
+// Asssign dev for the task
+function assignTask($taskId,$devId)
+{
+    global $conn;
+    $update = $conn->prepare("UPDATE pp_devwork as pd SET assign_id = (SELECT id FROM pp_users WHERE id = ?) WHERE pd.id = ?");
+    $result = $update->execute([$devId,$taskId]);
+    return $result;
+}
+
+//Get all users
+function getUsers()
+{
+    $query = "SELECT * FROM pp_users WHERE NOT role_id= 1";
+    $getTasks = executeQuery($query);
+    return $getTasks;
 }

@@ -2,12 +2,6 @@
     $userId = $_SESSION['user']->uid;
     $getSInfo = getSInfo($userId);
     ?>
-<div class="container">
-    <div class="row">
-                <div class="col">
-                    <p class="text-white mt-5 mb-5">Welcome back, <b>User</b></p>
-                </div>
-    </div>
     <?php if(count($getSInfo) > 0): ?>
     <?php foreach($getSInfo as $info): ?>
 <input type="hidden" name="freeSpace" id="freeSpace" value="<?= $info->sizeMB - $info->occupiedSizeOnServer; ?>">

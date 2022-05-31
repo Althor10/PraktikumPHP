@@ -26,7 +26,8 @@
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <?php if($_SESSION['user']->role_id == 1): ?>
+                        <?php if(isset($_SESSION['user'])): 
+                         if($_SESSION['user']->role_id == 1): ?>
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -64,7 +65,7 @@
                                 <a class="dropdown-item" href="#">Server Documentation</a>
                             </div>
                         </li>
-                        <?php endif; ?>
+                        <?php endif; endif; ?>
                        
                             <li class="nav-item">
                                 <a class="nav-link  <?php if(isset($subPage) && ($subPage == "account")) echo"active" ?>" href="index.php?page=admin&subpage=account">
@@ -72,20 +73,6 @@
                                  Account<?php if(isset($_SESSION['user']) && ($_SESSION['user']->role_id == 1)) echo "s"; ?>
                                 </a>
                             </li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -102,3 +89,13 @@
             </div>
 
         </nav>
+        <div class="container">
+    <div class="row">
+                <div class="col">
+                    <?php if($_SESSION['user']->role_id == 1): ?>
+                        <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+                    <?php else: ?>
+                        <p class="text-white mt-5 mb-5">Welcome back, <b>User</b></p>
+                    <?php endif; ?>
+                </div>
+    </div>

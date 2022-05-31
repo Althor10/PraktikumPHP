@@ -66,6 +66,9 @@ if($page == 'admin'){
             case "web-dev":
                 include "view/admin/pages/web-dev.php";
                 break;
+            case "assignDev":
+                include "view/admin/pages/assignDev.php";
+                break;
         }
 
     }else

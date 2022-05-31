@@ -9,5 +9,9 @@ if(isset($_SESSION['user']))
     {
         authorizeAdm();
     }
+    if($_SESSION['user']->role_id != 1 && $subpage == "assignDev")
+    {
+        authorizeAdm();
+    }
 }
 ?>

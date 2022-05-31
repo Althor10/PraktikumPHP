@@ -1,16 +1,6 @@
 <?php 
     $servers = getAllRequests();
 ?>
-<div class="container">
-    <div class="row">
-                <div class="col">
-                    <?php if($_SESSION['user']->role_id == 1): ?>
-                        <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <?php else: ?>
-                        <p class="text-white mt-5 mb-5">Welcome back, <b>User</b></p>
-                    <?php endif;?> 
-                </div>
-    </div>
     <div class="row tm-content-row">
         <div class="col-12 tm-block-col background-gray">
     <table id="table_id" class="display background-white">
@@ -23,6 +13,7 @@
             <th>Hosting</th>
             <th>Task</th>
             <th>Assigned To</th>
+            <th>Status</th>
             <th>Remove</th>
         </tr>
     </thead>
@@ -37,15 +28,20 @@
             <td><?=$serv->request ?></td>
             <?php 
             if($serv->assign_id):
-                $assignedDev = getAssignedDev($serv->assign_id);
+                $assignedDev = getAssignedDev($serv->assign_id, $serv->psid);
                 foreach($assignedDev as $dev):
             ?>
-            <td><?= $dev->usernm; ?></td>
+                <td><?= $dev->usernm; ?></td>
             <?php endforeach; ?>
             <?php else: ?>
-            <td><a href="./models/assignDev.php?id=<?=$serv->psid?>">Assign</a></td>
+                <td><a href="index.php?page=admin&subpage=assignDev&id=<?=$serv->pdid?>">Assign</a></td>
             <?php endif; ?>
-            <td><a href="./models/removeServer.php?id=<?=$serv->psid?>">X</a></td>
+            <?php if($serv->status == 0):?>
+                <td>Not Finished</td>
+            <?php else: ?>
+                <td>Finished</td>
+            <?php endif; ?>
+                <td><a href="./models/removeServer.php?id=<?=$serv->pdid?>">X</a></td>
         </tr>
         <?php endforeach; ?> 
     </tbody>
