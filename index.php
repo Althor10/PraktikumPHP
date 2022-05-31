@@ -114,6 +114,9 @@ switch($page){
         break;
     case "order":
         include "view/pages/order.php";
+        break;
+    case "author":
+        include "view/pages/author.php";
         break;        
     default:
         include "view/services.php";

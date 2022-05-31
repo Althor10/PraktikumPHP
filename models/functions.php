@@ -235,3 +235,10 @@ function getUsers()
     $getTasks = executeQuery($query);
     return $getTasks;
 }
+
+function getAuthorImg()
+{
+    $query = "SELECT * FROM pp_images WHERE img_alt = 'author'";
+    $getImg = executeQuery($query);
+    return $getImg;
+}
