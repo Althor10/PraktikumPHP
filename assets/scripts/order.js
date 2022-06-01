@@ -76,7 +76,7 @@ $(document).ready(function(){
                             $("#errorMsg").html(`<p class="alert alert-warning">There has been an error processing your data.</p>`);
                         }
                         if(xhr.status == 500){
-                            console.log(response);
+                            console.log(response+" "+error+" "+xhr);
                             alert("The Server appears to be broken!!");
                         }
                     }

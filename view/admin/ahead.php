@@ -22,5 +22,7 @@
     <!-- CUSTOM  by D.Z. 227/16-->
     <link rel="stylesheet" href= "assets/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-
+    <?php if(isset($_SESSION['user']) && $_SESSION['user']->role_id !=1 ): ?>
+      <link rel="stylesheet" href= "assets/css/dashboardUser.css" />
+      <?php endif; ?>
   </head>

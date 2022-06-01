@@ -15,7 +15,7 @@ function authorize() {
 function authorizeAdm()
 {
     if($_SESSION['user']->role_id != 1) {
-        redirect("index.php?page=admin");
+        redirect("../index.php?page=admin");
     }
 }
 
@@ -157,7 +157,7 @@ function newOrder($userId,$planId)
 //Getting server info for the selected user
 function getSInfo($id)
 {
-    $query = "SELECT * FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE user_id = $id";
+    $query = "SELECT *,ps.id as psid FROM pp_server as ps INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE user_id = $id";
     $getSInfo = executeQuery($query);
     return $getSInfo;
 }
@@ -270,3 +270,159 @@ function getUserAndImg($username)
     return $getUsrImg;
 }
 
+//Get Devs tasks
+function getDevTasks($id)
+{
+    $query = "SELECT *, ps.id as psid, pd.id as pdid FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE pd.assign_id = $id";
+    $getTasks = executeQuery($query);
+    return $getTasks;
+}
+
+//Get One User
+function getUser($id)
+{
+    $query = "SELECT * FROM pp_users WHERE id = $id";
+    $getUser = executeQuery($query);
+    return $getUser;
+}
+
+//Get User Data
+function getUserData($id)
+{
+    $query = "SELECT * FROM pp_users as pu INNER JOIN pp_user_img as pui on pu.id=pui.user_id INNER JOIN pp_images as pis ON pui.img_id = pis.id WHERE pu.id = $id";
+    $getUser = executeQuery($query);
+    return $getUser;
+}
+
+//Get Requested Server
+function getServer($id)
+{
+    $query = "SELECT * FROM pp_server WHERE id = $id";
+    $getServers = executeQuery($query);
+    return $getServers;
+}
+
+//Get Tasks by Server id 
+function getServersDevTasks($id)
+{
+    $query = "SELECT * FROM pp_devwork WHERE server_id = $id";
+    $getServers = executeQuery($query);
+    return $getServers;
+}
+
+
+//Remove Devwork and Server
+function removeServer($id)
+{
+    global $conn;
+    $isThereDevWork = getServersDevTasks($id);
+    if($isThereDevWork)
+    {
+        $deleteDevWork = $conn->prepare("UPDATE pp_devwork SET server_id = null WHERE server_id = ?");
+        $deleteDevWork->execute([$id]);
+
+        $deleteServer = $conn->prepare("DELETE FROM pp_server WHERE id = ?");
+        $deleteServer->execute([$id]);
+
+        if($deleteDevWork && $deleteServer)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+
+    } else 
+    {
+        $deleteServer = $conn->prepare("DELETE FROM pp_server WHERE id = ?");
+        $deleteServer->execute([$id]);
+
+        if($deleteServer)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+}
+//Update Server Domain Name
+function updateDomainName($id,$newName)
+{
+    global $conn;
+    $updateName = $conn->prepare("UPDATE pp_server SET serverUrl = ? WHERE id = ?");
+    $updateName->execute([$newName,$id]);
+    return $updateName;
+}
+
+//Get One Request
+function getRequest($id)
+{
+    $query = "SELECT * FROM pp_devwork WHERE id = $id";
+    $getRequest = executeQuery($query);
+    return $getRequest;
+}
+
+//Remove Request
+function removeRequest($id)
+{
+    global $conn;
+    $deleteRequest = $conn->prepare("DELETE FROM pp_devwork WHERE id = ?");
+    $deleteRequest->execute([$id]);
+    return $deleteRequest;
+}
+
+//Write XML for Server
+function writeXML($ipAddress,$serverUrl,$occupied,$freeSpace,$fullSpace)
+{
+    $exUrl = explode("http://",$serverUrl);
+    $domain = $exUrl[1];
+    
+
+    $xml = new DOMDocument("1.0");
+
+    $root = $xml->createElement("exportedServer");
+    $xml->appendChild($root);
+
+    $url = $xml->createElement("serverUrl");
+    $urlText = $xml->createTextNode($serverUrl);
+    $url->appendChild($urlText);
+
+    $ipsAddress = $xml->createElement("ipAddress");
+    $ipAddressText = $xml->createTextNode($ipAddress);
+    $ipsAddress->appendChild($ipAddressText);
+
+    $occupiedSpace = $xml->createElement("occupiedSpace");
+    $occupiedText = $xml->createTextNode($occupied);
+    $occupiedSpace->appendChild($occupiedText);
+
+    $freeSpaces = $xml->createElement("freeSpace");
+    $freeText = $xml->createTextNode($freeSpace);
+    $freeSpaces->appendChild($freeText);
+
+    $fullSpaces = $xml->createElement("fullSpace");
+    $fullText = $xml->createTextNode($fullSpace);
+    $fullSpaces->appendChild($fullText);
+
+    $server = $xml->createElement("server");
+    $server->appendChild($url);
+    $server->appendChild($ipsAddress);
+    $server->appendChild($occupiedSpace);
+    $server->appendChild($freeSpaces);
+    $server->appendChild($fullSpaces);
+
+
+    $root->appendChild($server);
+
+    $xml->formatOutput = true;
+
+    echo "<xmp>". $xml->saveXML() ."</xmp>";
+    
+    $xml->save("../../data/".$domain."server.xml") or die("Error");
+    
+    
+
+}

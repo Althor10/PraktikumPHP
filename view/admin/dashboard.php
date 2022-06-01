@@ -5,20 +5,37 @@
                     $getVisits = getLogData();
                     foreach($getVisits as $visit):
                         $exVisit = explode("\t",$visit);
-
-                        //Dates
-                        $exDate = explode(" ",trim($exVisit[2]));
-                        $date = $exDate[0];
-                        $time = $exDate[1];
-
+                        $today = time();
+                        $strToTime = strtotime($exVisit[2]);
+                        $dif = $today - $strToTime;
+                        // var_dump($dif);
                         //Pages
                         $exPage = explode("Visited ",$exVisit[3]);
-                        $page = $exPage[1];
+                        if($exPage[0] != ' ')
+                                        {
+                                            $page = $exPage[0];
+                                        }elseif($exPage[1] != ' ')
+                                        {
+                                            $page = $exPage[1];
+                                        }
+
+                        //In the past 24h
+                        if($dif > 86400):
+                            $exDate = explode(" ",trim($exVisit[2]));
+                            $date = $exDate[0];
+                            $time = $exDate[1];
+                        
+                        
                         
                 ?>     
                  <input type="hidden" class="<?=$page?>" value="<?=$page?>" data-date="<?=$exVisit[2]?>"/>
+                 <?php else: ?>
+                    <input type="hidden" class="<?=$page?>" value="<?=$page?>" data-date="allTime"/>
+                 <?php endif;?>
                 <?php endforeach ?>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+
+
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col hidden">
                     <div class="tm-bg-primary-dark tm-block">
                         <h2 class="tm-block-title">Popular Pages by Month</h2>
                         <canvas id="lineChart"></canvas>
@@ -44,7 +61,7 @@
                 </div>
 
 
-                <div class="col-12 tm-block-col">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
                         <h2 class="tm-block-title">Error Notification</h2>
                         <div class="tm-notification-items">
@@ -101,8 +118,16 @@
                                     <td><b><?=$d[0]?></b></td>
                                     <td><b><?=$d[1]?></b></td>
                                     <td><b><?=$d[2]?></b></td>
-                                    <?php $d3Break = explode("Visited ",$d[3]); 
-                                        $page = $d3Break[1];?>
+                                    <?php @$d3Break = explode("Visited ",$d[3]); 
+                                        if($d3Break[0] != ' ')
+                                        {
+                                            $page = $d3Break[0];
+                                        }elseif($d3Break[1] != ' ')
+                                        {
+                                            $page = $d3Break[1];
+                                        }
+                                        ?>
+                                        
                                     <td><?=$page?></td>
                                 </tr>
                                 <?php endforeach;?>
@@ -113,20 +138,51 @@
             </div>
         </div>
         <?php else: ?>
-            <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                        <div class="tm-bg-primary-dark tm-block">
-                            <h2 class="tm-block-title">Popular Pages by Month</h2>
-                            <input type="hidden" id="byMonthData" value=""/>
-                            <canvas id="lineChart"></canvas>
-                        </div>
-                </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                        <div class="tm-bg-primary-dark tm-block">
-                            <h2 class="tm-block-title">Popular Pages Last 24h</h2>
-                            <input type="hidden" id="byDayData" value=""/>
-                            <canvas id="barChart"></canvas>
-                        </div>
-                    </div>
-            </div>
+            <?php 
+        if($_SESSION['user']->dev == 1):
+            $id = $_SESSION['user']->uid; 
+            $servers = getDevTasks($id);
+            ?>
+    <div class="row tm-content-row">
+        <div class="col-12 tm-block-col background-gray">
+            <h2>Tasks:</h2>
+    <table id="table_id" class="display background-white">
+    <thead>
+        <tr>
+            <th>Domain</th>
+            <th>IP Address</th>
+            <th>Owner (Username)</th>
+            <th>Full Name</th>
+            <th>Hosting</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Respond</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($servers as $serv): ?>
+        <tr>
+            <td><?=$serv->serverUrl ?> </td>
+            <td><?=$serv->ipAddress ?> </td>
+            <td><?=$serv->usernm ?> </td>
+            <td><?=$serv->firstName." ".$serv->lastName ?></td>
+            <td><?=$serv->hosting_name ?> </td>
+            <td><?=$serv->request ?></td>
+            <?php if($serv->status == 1): ?>
+            <td>Finished</td>
+            <td>X</td>
+            <?php else: ?>
+            <td>Pending</td>
+            <td><a href="index.php?page=admin&subpage=respond"> Finish Task </a></td>
+            <?php endif; ?>
+        </tr>
+        <?php endforeach; ?> 
+    </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+    <?php endif; ?>
+</div>
+        </div>
         <?php endif; ?>

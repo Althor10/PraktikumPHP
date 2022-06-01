@@ -1,5 +1,18 @@
 const width_threshold = 480;
+var webHostingPages = $(".Web-Hosting").length;
+      var aboutPages = $(".About").length;
+      var webDevPages = $(".Web-Dev").length;
+      var homePages = $(".Home").length;
+      var digitalMarketings = $(".Digital-Marketing").length;
 
+      var fullPercent = webDevPages+aboutPages+webHostingPages+homePages+digitalMarketings;
+
+      var webHostingPagesPercentage = Math.ceil((webHostingPages / fullPercent)* 100);
+      var aboutPagesPercentage = Math.ceil((aboutPages / fullPercent)* 100);
+      var webDevPagesPercentage = Math.ceil((webDevPages / fullPercent)* 100);
+      var homePagesPercentage = Math.ceil((homePages / fullPercent)* 100);
+      var digitalMarketingsPercentage = Math.ceil((digitalMarketings / fullPercent)* 100);
+      
 function drawLineChart() {
   if ($("#lineChart").length) {
     ctxLine = document.getElementById("lineChart").getContext("2d");
@@ -91,19 +104,7 @@ function drawBarChart() {
     optionsBar.maintainAspectRatio =
       $(window).width() < width_threshold ? false : true;
 
-      var webHostingPages = $(".Web-Hosting").length;
-      var aboutPages = $(".About").length;
-      var webDevPages = $(".Web-Dev").length;
-      var homePages = $(".Home").length;
-      var digitalMarketings = $(".Digital-Marketing").length;
-
-      var fullPercent = webDevPages+aboutPages+webHostingPages+homePages+digitalMarketings;
-
-      var webHostingPagesPercentage = Math.ceil((webHostingPages / fullPercent)* 100);
-      var aboutPagesPercentage = Math.ceil((aboutPages / fullPercent)* 100);
-      var webDevPagesPercentage = Math.ceil((webDevPages / fullPercent)* 100);
-      var homePagesPercentage = Math.ceil((homePages / fullPercent)* 100);
-      var digitalMarketingsPercentage = Math.ceil((digitalMarketings / fullPercent)* 100);
+      
     /**
      * COLOR CODES
      * Red: #F7604D

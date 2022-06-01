@@ -1,29 +1,86 @@
 <?php if(isset($_SESSION['user']) && ($_SESSION['user']->role_id == 2)): ?>
-    <div class="row tm-content-row">
-    <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Latest Hits</h2>
-                        <canvas id="lineChart"></canvas>
+    <div class="container">
+        <div class="main-body">
+          <div class="row gutters-sm">
+
+          <?php 
+                $id = $_SESSION['user']->uid;
+                $user = getUserData($id);
+                foreach($user as $u):
+                    if($u->dev == 1)
+                    {
+                        $tasks = getDevTasks($id);
+                        $countTasks = count($tasks);
+                    }
+            ?>
+
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="<?= $u->img_path ?>" alt="<?= $u->alt?>" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4><?= $u->firstName." ".$u->lastName ?></h4>
+                      <?php if ($u->dev == 1): ?>
+                      <p class="text-secondary mb-1">Developer</p>
+                      <?php else: ?>
+                        <p class="text-secondary mb-1">User</p>
+                      <?php endif; ?>
+                      <p class="text-muted font-size-sm"><?= $u->usernm ?></p>
+                      <button class="btn btn-primary" id="changeImg">Change Img</button>
                     </div>
+                  </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Performance</h2>
-                        <canvas id="barChart"></canvas>
+              </div>
+
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller">
-                        <h2 class="tm-block-title">Storage Information</h2>
-                        <div id="pieChartContainer">
-                            <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
-                        </div>                        
+                    <div class="col-sm-9 text-secondary">
+                    <?= $u->firstName." ".$u->lastName ?>
                     </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?= $u->email ?>
+                    </div>
+                  </div>
+                  <hr>
+                  <?php if($u->dev == 1): ?>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Tasks Done:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <?= $countTasks;?>
+                    </div>
+                  </div>
+                  <?php endif; ?>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                    </div>
+                  </div>
                 </div>
-    </div>
-    
-</div>
+              </div>
+
+            </div>
+          </div>
+        <?php endforeach ?>
+        </div>
+        </div>
+        </div> 
+
 <?php else: ?>
     <?php 
     $br = 0;

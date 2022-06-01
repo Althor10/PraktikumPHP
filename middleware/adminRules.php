@@ -16,5 +16,6 @@ if(isset($_SESSION['user']))
         logActionOrError("Visit Assign Dev Admin page", true);
         authorizeAdm();
     }
+    
 }
 ?>

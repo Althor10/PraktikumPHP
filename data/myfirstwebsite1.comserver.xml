@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<exportedServer>
+  <server>
+    <serverUrl>http://myfirstwebsite1.com</serverUrl>
+    <ipAddress>140.250.30.20</ipAddress>
+    <occupiedSpace>300</occupiedSpace>
+    <freeSpace>50900</freeSpace>
+    <fullSpace>51200</fullSpace>
+  </server>
+</exportedServer>

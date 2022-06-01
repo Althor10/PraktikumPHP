@@ -41,7 +41,7 @@
             <?php else: ?>
                 <td>Finished</td>
             <?php endif; ?>
-                <td><a href="./models/removeServer.php?id=<?=$serv->pdid?>">X</a></td>
+                <td><a href="./models/removeRequest.php?id=<?=$serv->pdid?>">X</a></td>
         </tr>
         <?php endforeach; ?> 
     </tbody>

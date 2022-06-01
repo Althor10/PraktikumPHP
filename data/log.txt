@@ -12,3 +12,23 @@ dz22716 	 ::1 	 2022-05-31 15:07:20 	 Visited Home Page
 dz22716 	 ::1 	 2022-05-31 15:08:37 	 Visited Web-Dev page 
 dz22716 	 ::1 	 2022-05-31 15:08:59 	 Visited Web-Dev page 
 dz22716 	 ::1 	 2022-05-31 15:09:09 	 Visited Digital-Marketing page 
+dz22716 	 ::1 	 2022-05-31 20:47:24 	 Visited Home Page 
+dz22716 	 ::1 	 2022-06-01 00:56:06 	 Logged in 
+dz22716 	 ::1 	 2022-06-01 01:33:02 	 Visited Home Page 
+dz22716 	 ::1 	 2022-06-01 01:33:05 	 Visited Web-Hosting page 
+dz22716 	 ::1 	 2022-06-01 01:33:09 	 Visited About Page 
+dz22716 	 ::1 	 2022-06-01 02:13:09 	 Visited Home Page 
+dz22716 	 ::1 	 2022-06-01 02:52:07 	 Logged in 
+dz22716 	 ::1 	 2022-06-01 02:56:25 	 Updated their Server name 
+dz22716 	 ::1 	 2022-06-01 04:23:44 	 Removed a server 
+dz22716 	 ::1 	 2022-06-01 04:23:52 	 Visited Home Page 
+dz22716 	 ::1 	 2022-06-01 04:23:55 	 Visited Web-Hosting page 
+dz22716 	 ::1 	 2022-06-01 04:23:59 	 Visited Buy Server page. 
+dz22716 	 ::1 	 2022-06-01 04:24:03 	 Visited Order page. 
+dz22716 	 ::1 	 2022-06-01 04:24:42 	 Visited Web-Hosting page 
+dz22716 	 ::1 	 2022-06-01 04:24:44 	 Visited Buy Server page. 
+dz22716 	 ::1 	 2022-06-01 04:24:46 	 Visited Order page. 
+dz22716 	 ::1 	 2022-06-01 04:26:12 	 Visited Web-Hosting page 
+dz22716 	 ::1 	 2022-06-01 04:26:14 	 Visited Buy Server page. 
+dz22716 	 ::1 	 2022-06-01 04:26:17 	 Visited Order page. 
+dz22716 	 ::1 	 2022-06-01 04:27:35 	 Visited Order page. 

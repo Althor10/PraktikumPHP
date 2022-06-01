@@ -4,9 +4,7 @@
     ?>
     <?php if(count($getSInfo) > 0): ?>
     <?php foreach($getSInfo as $info): ?>
-<input type="hidden" name="freeSpace" id="freeSpace" value="<?= $info->sizeMB - $info->occupiedSizeOnServer; ?>">
-<input type="hidden" name="storageSpace" id="storageSpace" value="<?= $info->occupiedSizeOnServer; ?>">
-<input type="hidden" name="fullSpace" id="fullSpace" value="<?= $info->sizeMB; ?>">
+
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col hidden">
                     <div class="tm-bg-primary-dark tm-block ">
                         <h2 class="tm-block-title">Latest Hits</h2>
@@ -20,11 +18,26 @@
                     </div>
                 </div>
                 <div class="col-12 tm-block-col">
-                    <button name="deleteServer" id="deleteServer" class="btn btn-sm btn-block btn-primary">Delete</button>
+                    <a name="deleteServer" id="deleteServer" href="./models/removeServer.php?id=<?=$info->psid?>" class="btn btn-sm btn-block btn-primary">Delete</a>
                     <div class="clearfix"></div>
                     <div class="tm-bg-primary-dark tm-block tm-block-taller">
-                        <h2 class="tm-block-title text-center float-left">Storage Information : <a href ="" title="Change Domain name?"><?= $info->serverUrl."</a> (".$info->ipAddress.")"; ?></h2>
-                        <button name="printReport" id="printReport" class="btn btn-sm btn-block btn-primary">Print Report</button>
+                        <h2 class="tm-block-title text-center float-left">Storage Information : <a href ="index.php?page=admin&subpage=changeServerDomain&id=<?=$info->psid ?>" title="Change Domain name?"><?= $info->serverUrl."</a> (".$info->ipAddress.")"; ?></h2>
+                        <form action="./models/export/printServer.php" method="post" target="_blank">
+                            <input type="hidden" name="serverUrl" value="<?=$info->serverUrl?>">
+                            <input type="hidden" name="ipAddress" value="<?=$info->ipAddress?>">
+                            <input type="hidden" name="freeSpace" id="freeSpace" value="<?= $info->sizeMB - $info->occupiedSizeOnServer; ?>">
+                            <input type="hidden" name="storageSpace" id="storageSpace" value="<?= $info->occupiedSizeOnServer; ?>">
+                            <input type="hidden" name="fullSpace" id="fullSpace" value="<?= $info->sizeMB; ?>">
+                        <input type="submit" name="printReport" id="printReport" class="btn btn-sm btn-block btn-primary" value="Create XML">
+                        <?php
+                        $expl = explode("http://",$info->serverUrl); 
+                        $domain = $expl[1];
+                        $file = file_exists("./data/".$domain."server.xml");
+                        if($file):
+                        ?>
+                        <a href="./data/<?=$domain?>server.xml"  > Download XML</a>
+                        <?php endif; ?>
+                        </form>
                         <div class="clearfix"></div>
                         <div id="pieChartContainer">
                             <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>

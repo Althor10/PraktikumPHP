@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             require_once "../config/connection.php";
             $md5Password = md5($password);
 
-            $query = "SELECT u.id as uid, email,passwd,role_id,role_name,usernm,firstName,lastName FROM pp_users u INNER JOIN pp_role r ON u.role_id=r.id WHERE u.usernm = :username AND u.passwd = :password;";
+            $query = "SELECT u.id as uid, email,passwd,role_id,role_name,usernm,firstName,lastName,dev FROM pp_users u INNER JOIN pp_role r ON u.role_id=r.id WHERE u.usernm = :username AND u.passwd = :password;";
 
 
             $stmt = $conn->prepare($query);
@@ -44,6 +44,7 @@ if (isset($_POST['submit'])) {
 
         if ($user) {
             $_SESSION['user'] =  $user; //Pravljenje sesije koja kao sadrzaj ima rezultat rada baze podataka
+            logActionOrError("Logged in");
             header("Location: ../index.php?page=admin");
 
         } else {

@@ -16,6 +16,11 @@
     float: right;
 }
 
+#downloadReport
+{
+    float: right;
+}
+
 .background-white
 {
     background-color: white;
