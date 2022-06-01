@@ -1,5 +1,4 @@
-<?php if(isset($_SESSION['user']) && ($_SESSION['user']->role_id == 2)): ?>
-    <div class="container">
+<div class="container">
         <div class="main-body">
           <div class="row gutters-sm">
 
@@ -13,8 +12,9 @@
                         $countTasks = count($tasks);
                     }
             ?>
-
+    
             <div class="col-md-4 mb-3">
+            <form action="models/updateUserData.php" method="post" enctype="multipart/form-data">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
@@ -27,21 +27,32 @@
                         <p class="text-secondary mb-1">User</p>
                       <?php endif; ?>
                       <p class="text-muted font-size-sm"><?= $u->usernm ?></p>
+                      <i class="text-muted font-size-sm">Please note that for best experience use 80x80 avatars</i>
+                      <input type="file" class="btn btn-primary" id="changeImg" name="changeImg" value="Change Img">
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
+            <input type="hidden" name="userId" id="userId" value="<?=$u->uid?>">
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0">First Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?= $u->firstName." ".$u->lastName ?>
+                    <input type="text" name="firstName" id="firstName" value="<?=$u->firstName?>">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <input type="text" name="lastName" id="lastName" value="<?=$u->lastName?>">
                     </div>
                   </div>
                   <hr>
@@ -50,24 +61,14 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?= $u->email ?>
+                    <input type="text" name="email" id="email" value="<?=$u->email?>">
                     </div>
                   </div>
                   <hr>
-                  <?php if($u->dev == 1): ?>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Tasks Done:</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <?= $countTasks;?>
-                    </div>
-                  </div>
-                  <?php endif; ?>
-                  <hr>
+                  
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="_blank" href="./index.php?page=admin&subpage=editUserData">Edit</a>
+                      <input type="submit" name="btnSubmit" class="btn btn-info" value="Edit"  />
                     </div>
                   </div>
                 </div>
@@ -75,49 +76,9 @@
 
             </div>
           </div>
-        <?php endforeach ?>
+          <?php endforeach ?>
+        </form>
+       
         </div>
         </div>
         </div> 
-
-<?php else: ?>
-    <?php 
-    $br = 0;
-    $users = getUsers();
-?>
-    <div class="row tm-content-row">
-        <div class="col-12 tm-block-col background-gray">
-    <table id="table_id" class="display background-white">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Username</th>
-            <th>Full Name</th>
-            <th>Task Count</th>
-            <th>Status</th>
-            <th>Remove</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($users as $user): ?>
-        <tr>
-            <td><?= $br++; ?></td>
-            <td><?= $user->usernm ?></td>
-            <td><?= $user->firstName." ".$user->lastName ?></td>
-            <?php $taskCount = devsWithTask($user->id);?>
-            <td><?= count($taskCount) ?></td>
-            <?php if ($user->dev): ?>
-                <td><a href="./index.php?page=admin&subpage=changeStatus&id=<?= $user->id ?>" title="Change Status?">Developer</a></td>
-            <?php else: ?>
-                <td><a href="./index.php?page=admin&subpage=changeStatus&id=<?= $user->id ?>" title="Change Status?">User</a></td>
-            <?php endif;?>
-            <td><a href="./models/removeUser.php?id=<?=$user->id?>">X</a> <i class="fa fa-question-circle d-inline" title="Removing this will remove the users Servers"></i></td>
-        </tr>
-        <?php endforeach; ?> 
-    </tbody>
-    </table>
-    </div>
-    </div>
-</div>
-</div>
-<?php endif;?>

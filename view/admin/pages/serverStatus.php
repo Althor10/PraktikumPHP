@@ -35,7 +35,7 @@
                         $file = file_exists("./data/".$domain."server.xml");
                         if($file):
                         ?>
-                        <a href="./data/<?=$domain?>server.xml"  > Download XML</a>
+                        <a href="./data/<?=$domain?>server.xml" target="_blank" download> Download XML</a>
                         <?php endif; ?>
                         </form>
                         <div class="clearfix"></div>

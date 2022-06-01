@@ -72,6 +72,12 @@ if($page == 'admin'){
             case "changeServerDomain":
                 include "view/admin/pages/changeServerDomain.php";
                 break;
+            case "changeStatus":
+                include "view/admin/pages/changeStatus.php";
+                break;
+            case "editUserData":
+                include "view/admin/pages/editUserData.php";
+                break;
         }
 
     }else

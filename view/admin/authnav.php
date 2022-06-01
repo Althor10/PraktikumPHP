@@ -60,7 +60,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="index.php?page=admin&subpage=serverStatus">Server Status</a>
-                                <a class="dropdown-item" href="#">Server Documentation</a>
                             </div>
                         </li>
                         <?php endif; endif; ?>

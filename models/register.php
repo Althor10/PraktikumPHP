@@ -44,6 +44,11 @@ if(isset($_POST["regSubmit"]))
     {
         $errorsCount++;
     }
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        $errorsCount++;
+    }
    
     if($errorsCount != 0)
     {

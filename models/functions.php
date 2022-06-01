@@ -273,7 +273,7 @@ function getUserAndImg($username)
 //Get Devs tasks
 function getDevTasks($id)
 {
-    $query = "SELECT *, ps.id as psid, pd.id as pdid FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE pd.assign_id = $id";
+    $query = "SELECT *, ps.id as psid, pd.id as pdid FROM pp_devwork as pd inner join pp_server as ps ON pd.server_id=ps.id inner join pp_users as pu on ps.user_id=pu.id INNER JOIN pp_plan as pp on ps.plan_id=pp.id INNER JOIN pp_hostings as ph ON pp.hosting_id=ph.id WHERE pd.assign_id = $id AND pd.status=1";
     $getTasks = executeQuery($query);
     return $getTasks;
 }
@@ -289,7 +289,7 @@ function getUser($id)
 //Get User Data
 function getUserData($id)
 {
-    $query = "SELECT * FROM pp_users as pu INNER JOIN pp_user_img as pui on pu.id=pui.user_id INNER JOIN pp_images as pis ON pui.img_id = pis.id WHERE pu.id = $id";
+    $query = "SELECT *,pu.id uid FROM pp_users as pu INNER JOIN pp_user_img as pui on pu.id=pui.user_id INNER JOIN pp_images as pis ON pui.img_id = pis.id WHERE pu.id = $id";
     $getUser = executeQuery($query);
     return $getUser;
 }
@@ -425,4 +425,85 @@ function writeXML($ipAddress,$serverUrl,$occupied,$freeSpace,$fullSpace)
     
     
 
+}
+
+//Remove Users Server
+function removeServerUser($id)
+{
+    global $conn;
+        $deleteServer = $conn->prepare("DELETE FROM pp_server WHERE user_id = ?");
+        $deleteServer->execute([$id]);
+    return $deleteServer;
+}
+
+//Remove User
+function removeUser($id)
+{
+    global $conn;
+    $deleteUser = $conn->prepare("DELETE FROM pp_users WHERE id = ?");
+    $deleteUser->execute([$id]);
+    return $deleteUser;
+}
+
+//Remove Users Devwork
+function removeDevwork($id)
+{
+    global $conn;
+    $deleteDevWork = $conn->prepare("UPDATE pp_devwork SET assign_id = null WHERE assign_id = ?");
+    $deleteDevWork->execute([$id]);;
+    return $deleteDevWork;
+}
+
+//Change Users Status
+function changeUserStatus($id,$status)
+{
+    global $conn;
+    $updateUserStatus = $conn->prepare("UPDATE pp_users SET dev = ? WHERE id = ?");
+    $updateUserStatus->execute([$status,$id]);;
+    return $updateUserStatus;
+}
+
+//Update Request Status
+function changeRequestStatus($id)
+{
+    global $conn;
+    $updateRequestStatus = $conn->prepare("UPDATE pp_devwork SET status = 1 WHERE id = ?");
+    $updateRequestStatus->execute([$id]);;
+    return $updateRequestStatus;
+}
+
+//Update User Data
+function updateUserData($id,$firstName,$lastName,$email,$imgPath)
+{
+    global $conn;
+    $alt = $firstName.$lastName;
+    $insertImg = $conn->prepare("INSERT INTO pp_images VALUES ('',?,?)");
+    $insertImg->execute([$alt,$imgPath]);
+
+    if($insertImg)
+    {
+        $insertUsrImg = $conn->prepare("INSERT INTO pp_user_img VALUES ('',(SELECT id FROM pp_users WHERE id = ?),(SELECT id FROM pp_images WHERE alt = ?))");
+        $insertUsrImg->execute([$id,$alt]);
+
+        if($insertUsrImg)
+        {
+            $updateUser = $conn->prepare("UPDATE pp_user SET firstName = ?, lastName = ?, email = ? WHERE id = ?");
+            $updateUser->execute([$firstName,$lastName,$email,$id]);
+
+            if($updateUser)
+            {
+                return true;
+            }
+            else{
+        return false;
+         }
+
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
 }

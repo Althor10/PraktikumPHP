@@ -23,19 +23,35 @@ function executeQuery($upit){
 }
 
 function logActionOrError($message, $error = false){
-	
-	if($error){
-		$file = fopen(dirname(__DIR__, 1) . '/data/error.txt', "a+");
-	} else {
-		$file = fopen(dirname(__DIR__, 1) . '/data/log.txt', "a+");
-	}
-	
-	$korisnik = $_SESSION["user"]->usernm;
-	$ip = $_SERVER['REMOTE_ADDR'];
+
+    if(isset($_SESSION['user']))
+    {
+        if($error){
+            $file = fopen(dirname(__DIR__, 1) . '/data/error.txt', "a+");
+        } else {
+            $file = fopen(dirname(__DIR__, 1) . '/data/log.txt', "a+");
+        }
+        
+        $korisnik = $_SESSION["user"]->usernm;
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $datum = date('Y-m-d H:i:s');
+        
+        
+        $upis = "$korisnik \t $ip \t $datum \t $message \n";
+        fwrite($file, $upis);
+        fclose($file);
+    }
+    else
+    {
+    $file = fopen(dirname(__DIR__, 1) . '/data/log.txt', "a+");
+    $ip = $_SERVER['REMOTE_ADDR'];
 	$datum = date('Y-m-d H:i:s');
 	
 	
-	$upis = "$korisnik \t $ip \t $datum \t $message \n";
+	$upis = "NotAUser \t $ip \t $datum \t $message \n";
 	fwrite($file, $upis);
 	fclose($file);
+    }
+	
+	
 }
