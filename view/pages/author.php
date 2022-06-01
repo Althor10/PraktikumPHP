@@ -33,6 +33,13 @@
 			                <a href="models/export/printAuthorData.php" target="_blank" class="btn btn-lg btn-block btn-danger">Export Data</a>
 		                </p>
 		              </div>
+					  </div>
+						</br>
+					  <div class="text">
+		              	<p class="mb-4 btn-custom">
+			                <a href="DocumentationDS.docx" target="_blank" class="btn btn-lg btn-block btn-primary">Documentation</a>
+		                </p>
+		              
 			          </div>
 			        </div>
 		        </div>
